@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 화성오산 디지털시민성 실천교육연구회 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+        }
+
+        /* 스탬프 섹션 */
+        .stamp-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stamp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .stamp-header h2 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .reset-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .stamps-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stamp {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stamp.collected {
+            background: rgba(255, 215, 0, 0.8);
+            border-color: #ffd700;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00c9ff, #92fe9d);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* 퀴즈 그리드 */
+        .quiz-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quiz-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .first-row {
+            justify-content: center;
+        }
+
+        .second-row {
+            justify-content: center;
+        }
+
+        /* 퀴즈 카드 */
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 280px;
+            max-width: 320px;
+            flex: 1;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .quiz-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* 카드별 색상 */
+        .card-1 {
+            background: linear-gradient(135deg, rgba(255, 99, 132, 0.8), rgba(255, 159, 164, 0.6));
+        }
+
+        .card-2 {
+            background: linear-gradient(135deg, rgba(54, 162, 235, 0.8), rgba(116, 185, 255, 0.6));
+        }
+
+        .card-3 {
+            background: linear-gradient(135deg, rgba(75, 192, 192, 0.8), rgba(153, 255, 255, 0.6));
+        }
+
+        .card-4 {
+            background: linear-gradient(135deg, rgba(255, 206, 84, 0.8), rgba(255, 238, 153, 0.6));
+        }
+
+        .card-5 {
+            background: linear-gradient(135deg, rgba(144, 238, 144, 0.8), rgba(185, 255, 185, 0.6));
+        }
+
+        /* 선물 섹션 */
+        .gift-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gift-section p {
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 푸터 */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .warning {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-buttons button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-buttons button:first-child {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .modal-buttons button:last-child {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .modal-buttons button:hover {
+            transform: scale(1.05);
+        }
+
+        /* 완료 모달 */
+        .completion-modal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .big-stamp {
+            font-size: 6rem;
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .completion-modal button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .completion-modal button:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* 알림 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 1001;
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .quiz-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quiz-card {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .stamps-container {
+                gap: 15px;
+            }
+            
+            .stamp {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .reset-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .title {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .quiz-card {
+                padding: 20px;
+                min-width: auto;
+            }
+            
+            .stamp-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🌟 화성오산 디지털시민성 실천교육연구회 🌟</h1>
+            <p class="subtitle">다양한 퀴즈와 게임을 통해 디지털 시민성을 배우고 성장해보세요.</p>
+            <p class="subtitle">각 콘텐츠를 클릭하여 살펴보고 나오면 스탬프를 받을 수 있어요!</p>
+        </header>
+
+        <div class="stamp-section">
+            <div class="stamp-header">
+                <h2>🏆 스탬프 수집 현황</h2>
+                <button class="reset-btn" onclick="resetStamps()">🔄 초기화</button>
+            </div>
+            <div class="stamps-container">
+                <div class="stamp" id="stamp-1">🎮</div>
+                <div class="stamp" id="stamp-2">🎓</div>
+                <div class="stamp" id="stamp-3">🔑</div>
+                <div class="stamp" id="stamp-4">🧩</div>
+                <div class="stamp" id="stamp-5">⚡</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0/5 완료</span>
+            </div>
+        </div>
+
+        <div class="quiz-grid">
+            <div class="quiz-row first-row">
+                <div class="quiz-card card-1" onclick="openQuiz('https://cfibmoyk.gensparkspace.com/', 1)">
+                    <div class="card-icon">🎮</div>
+                    <h3>디지털 시민 어드벤처</h3>
+                    <p>방향키로 움직여며 디지털 세상을<br>탐험하고 올바른 선택으로<br>디지털 시민이 되어보세요!</p>
+                    <span class="tag">게임</span>
+                    <span class="tag">어드벤처</span>
+                </div>
+                <div class="quiz-card card-2" onclick="openQuiz('https://gensparkpublicblob.blob.core.windows.net/user-upload-image/page/toolu_013QpHEf1PVBozg5LNp5Hf16/digital_citizenship_education_v3.html', 2)">
+                    <div class="card-icon">🎓</div>
+                    <h3>디지털 시민 인증서 퀴즈</h3>
+                    <p>4가지 주제의 영상을 보고<br>퀴즈를 풀어<br>디지털 시민 인증서를<br>받아보세요!</p>
+                    <span class="tag">영상</span>
+                    <span class="tag">인증서</span>
+                </div>
+            </div>
+            
+            <div class="quiz-row second-row">
+                <div class="quiz-card card-3" onclick="openQuiz('https://gensparkpublicblob.blob.core.windows.net/user-upload-image/page/toolu_01L3MDcXPvH2q4XFUd8j9xZY/digital_citizen_escape_game_final.html', 3)">
+                    <div class="card-icon">🔑</div>
+                    <h3>디지털 세상 대모험</h3>
+                    <p>4개의 특별한 방을 통과하는<br>방탈출 게임으로<br>진정한 디지털 시민이 되어보세요!</p>
+                    <span class="tag">방탈출 게임</span>
+                </div>
+                <div class="quiz-card card-4" onclick="openQuiz('https://bowling-story.my.canva.site/mbti', 4)">
+                    <div class="card-icon">🧩</div>
+                    <h3>디지털 시민성 MBTI</h3>
+                    <p>나의 성격 유형을 파악하고<br>맞춤형 디지털 시민성 가이드를<br>받아보세요!</p>
+                    <span class="tag">성격 테스트</span>
+                </div>
+                <div class="quiz-card card-5" onclick="openQuiz('https://tpwns001.my.canva.site/', 5)">
+                    <div class="card-icon">📝</div>
+                    <h3>디지털 시민성 퀴즈</h3>
+                    <p>초등학교 3학년 학생들을 위한<br>디지털 시민성 퀴즈입니다.<br>총 12문제를 풀어보세요!</p>
+                    <span class="tag">퀴즈</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-section">
+            <p>🎁 모든 부스 체험을 완료하고 상품도 받아가세요!</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 화성오산 디지털시민성 실천교육연구회</p>
+    </footer>
+
+    <!-- 모달 창들 -->
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <h3>⚠️ 초기화 확인</h3>
+            <p>정말로 모든 스탬프를 초기화하시겠습니까?</p>
+            <p class="warning">이 작업은 되돌릴 수 없습니다.</p>
+            <div class="modal-buttons">
+                <button onclick="confirmReset()">초기화</button>
+                <button onclick="closeModal('resetModal')">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="completionModal" class="modal">
+        <div class="modal-content completion-modal">
+            <h2>🏆 축하합니다!</h2>
+            <div class="big-stamp">🏆</div>
+            <h3>모든 퀴즈를 완료했습니다!</h3>
+            <p>다른 부스로 이동하여 모든 체험을 완료하고 상품을 받아보세요!</p>
+            <button onclick="closeModal('completionModal')">확인</button>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // 스탬프 수집 상태 관리
+        let collectedStamps = JSON.parse(localStorage.getItem('collectedStamps')) || [];
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStampDisplay();
+            updateProgress();
+            
+            // 키보드 단축키 (1-5 숫자키)
+            document.addEventListener('keydown', function(e) {
+                const key = e.key;
+                if (key >= '1' && key <= '5') {
+                    const index = parseInt(key);
+                    const urls = [
+                        'https://cfibmoyk.gensparkspace.com/',
+                        'https://gensparkpublicblob.blob.core.windows.net/user-upload-image/page/toolu_013QpHEf1PVBozg5LNp5Hf16/digital_citizenship_education_v3.html',
+                        'https://gensparkpublicblob.blob.core.windows.net/user-upload-image/page/toolu_01L3MDcXPvH2q4XFUd8j9xZY/digital_citizen_escape_game_final.html',
+                        'https://bowling-story.my.canva.site/mbti',
+                        'https://tpwns001.my.canva.site/'
+                    ];
+                    openQuiz(urls[index - 1], index);
+                }
+            });
+        });
+
+        // 퀴즈 열기 함수 (새 창으로 열기)
+        function openQuiz(url, quizId) {
+            // 스탬프 수집 (클릭 시 즉시 부여)
+            if (!collectedStamps.includes(quizId)) {
+                collectStamp(quizId);
+            }
+            
+            // 새 창으로 퀴즈 사이트 열기
+            try {
+                window.open(url, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            } catch (error) {
+                console.error('퀴즈 사이트 열기 오류:', error);
+                showNotification('퀴즈 사이트를 열 수 없습니다. 다시 시도해주세요.', 'error');
+            }
+        }
+
+        // 스탬프 수집 함수
+        function collectStamp(quizId) {
+            if (!collectedStamps.includes(quizId)) {
+                collectedStamps.push(quizId);
+                localStorage.setItem('collectedStamps', JSON.stringify(collectedStamps));
+                
+                // UI 업데이트
+                updateStampDisplay();
+                updateProgress();
+                
+                // 알림 표시
+                showNotification(`스탬프 ${quizId}번을 획득했습니다! 🎉`);
+                
+                // 모든 스탬프 수집 시 축하 모달
+                if (collectedStamps.length === 5) {
+                    setTimeout(() => {
+                        showCompletionModal();
+                    }, 1000);
+                }
+            }
+        }
+
+        // 스탬프 표시 업데이트
+        function updateStampDisplay() {
+            for (let i = 1; i <= 5; i++) {
+                const stamp = document.getElementById(`stamp-${i}`);
+                if (stamp) {
+                    if (collectedStamps.includes(i)) {
+                        stamp.classList.add('collected');
+                    } else {
+                        stamp.classList.remove('collected');
+                    }
+                }
+            }
+        }
+
+        // 진행률 업데이트
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressFill && progressText) {
+                const percentage = (collectedStamps.length / 5) * 100;
+                progressFill.style.width = `${percentage}%`;
+                progressText.textContent = `${collectedStamps.length}/5 완료`;
+            }
+        }
+
+        // 스탬프 초기화
+        function resetStamps() {
+            showModal('resetModal');
+        }
+
+        function confirmReset() {
+            collectedStamps = [];
+            localStorage.removeItem('collectedStamps');
+            
+            updateStampDisplay();
+            updateProgress();
+            
+            closeModal('resetModal');
+            showNotification('스탬프가 모두 초기화되었습니다! 🔄', 'reset');
+        }
+
+        // 모달 표시/숨김
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                
+                // 모달 외부 클릭 시 닫기
+                modal.onclick = function(e) {
+                    if (e.target === modal) {
+                        closeModal(modalId);
+                    }
+                };
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 완료 모달 표시
+        function showCompletionModal() {
+            showModal('completionModal');
+        }
+
+        // 알림 표시
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            if (notification) {
+                notification.textContent = message;
+                notification.className = 'notification show';
+                
+                // 타입별 색상 설정
+                switch(type) {
+                    case 'error':
+                        notification.style.background = '#e74c3c';
+                        break;
+                    case 'reset':
+                        notification.style.background = '#f39c12';
+                        break;
+                    default:
+                        notification.style.background = '#2ecc71';
+                }
+                
+                // 3초 후 숨김
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
