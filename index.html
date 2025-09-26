@@ -41,6 +41,11 @@
             animation: glow 2s ease-in-out infinite alternate;
         }
 
+        /* 모바일용 제목 숨김 */
+        .title-mobile {
+            display: none;
+        }
+
         @keyframes glow {
             from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
             to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
@@ -50,6 +55,11 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 10px;
+        }
+
+        /* 모바일용 서브타이틀 숨김 */
+        .subtitle-mobile {
+            display: none;
         }
 
         /* 스탬프 섹션 */
@@ -332,6 +342,11 @@
             font-weight: 600;
         }
 
+        /* 모바일용 선물 섹션 숨김 */
+        .gift-section-mobile {
+            display: none;
+        }
+
         /* 푸터 */
         .footer {
             text-align: center;
@@ -461,17 +476,60 @@
 
         /* 반응형 디자인 */
         @media (max-width: 768px) {
+            /* 데스크톱용 텍스트 숨김 */
             .title {
-                font-size: 2rem;
-                text-align: center;
+                display: none;
             }
             
             .subtitle {
-                text-align: center;
+                display: none;
             }
             
-            .gift-section p {
+            .gift-section {
+                display: none;
+            }
+            
+            /* 모바일용 텍스트 표시 */
+            .title-mobile {
+                display: block;
+                font-size: 2rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 20px;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                animation: glow 2s ease-in-out infinite alternate;
                 text-align: center;
+                line-height: 1.3;
+            }
+            
+            .title-mobile .emoji {
+                font-size: 4rem;
+            }
+            
+            .subtitle-mobile {
+                display: block;
+                font-size: 1.1rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 10px;
+                text-align: center;
+                line-height: 1.4;
+            }
+            
+            .gift-section-mobile {
+                display: block;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .gift-section-mobile p {
+                font-size: 1.2rem;
+                color: white;
+                font-weight: 600;
+                line-height: 1.4;
             }
             
             .quiz-row {
@@ -505,18 +563,16 @@
                 padding: 15px;
             }
             
-            .title {
+            .title-mobile {
                 font-size: 1.5rem;
-                text-align: center;
             }
             
-            .subtitle {
+            .title-mobile .emoji {
+                font-size: 3rem;
+            }
+            
+            .subtitle-mobile {
                 font-size: 1rem;
-                text-align: center;
-            }
-            
-            .gift-section p {
-                text-align: center;
             }
             
             .quiz-card {
@@ -535,9 +591,15 @@
 <body>
     <div class="container">
         <header class="header">
+            <!-- 데스크톱용 제목 -->
             <h1 class="title">🌟 화성오산 디지털시민성 실천교육연구회 🌟</h1>
             <p class="subtitle">다양한 퀴즈와 게임을 통해 디지털 시민성을 배우고 성장해보세요.</p>
             <p class="subtitle">각 콘텐츠를 클릭하여 살펴보고 나오면 스탬프를 받을 수 있어요!</p>
+            
+            <!-- 모바일용 제목 -->
+            <h1 class="title-mobile"><span class="emoji">🌟</span> 화성오산 디지털시민성<br>실천교육연구회 <span class="emoji">🌟</span></h1>
+            <p class="subtitle-mobile">다양한 퀴즈와 게임을 통해<br>디지털 시민성을 배우고 성장해보세요.</p>
+            <p class="subtitle-mobile">각 콘텐츠를 클릭하여 살펴보고 나오면<br>스탬프를 받을 수 있어요!</p>
         </header>
 
         <div class="stamp-section">
@@ -600,8 +662,14 @@
             </div>
         </div>
 
+        <!-- 데스크톱용 선물 섹션 -->
         <div class="gift-section">
             <p>🎁 모든 부스 체험을 완료하고 상품도 받아가세요!</p>
+        </div>
+        
+        <!-- 모바일용 선물 섹션 -->
+        <div class="gift-section-mobile">
+            <p>🎁 모든 부스 체험을 완료하고<br>상품도 받아가세요!</p>
         </div>
     </div>
 
